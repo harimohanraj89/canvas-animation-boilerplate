@@ -11,7 +11,7 @@ window.onload = function() {
 	canvas = document.getElementById("anim-canvas");
 	canvas.width = CWIDTH;
 	canvas.height = CHEIGHT;
-	context = canvas.getContext('2d')
+	context = canvas.getContext('2d');
 
 	// Create an instance of Ball
 	// -------------
@@ -20,44 +20,59 @@ window.onload = function() {
 
 	// Draw the ball once onto the canvas
 	// -------------
-	ball.render(context);
+	ball.render();
+
+	// IT'S WORKING!!
+	// So apparently, setInterval should only accept global functions!
+	// So we just wrap our ball.update() and ball.render() into global functions.
+	// Look at the bottom!
 
 
-	// Set up setTimeout for update
+	// Set up setInterval for update
 	// -------------
+	setInterval(updateAll, UPDATE_TIMESTEP);
 
 
-
-	// Set up setTimeout for render
+	// Set up setInterval for render
 	// -------------
-
+	setInterval(renderAll, RENDER_TIMESTEP);
 }
 
 Ball = function() {
 
 	// Attributes of our Ball class
 	// -------------
-
-
-
-
-
+	this.color = "#777";
+	this.radius = 20;
+	this.position = CWIDTH/2;
+	this.velocity = 15;
 
 	// Function to update the position of the ball
 	// -------------
 	this.update = function() {
-
+		this.position += this.velocity * UPDATE_TIMESTEP/1000;
 	}
 
 
 	// Function to draw the ball onto the canvas
 	// -------------
-	this.render = function(ctx) {
-		ctx.save();
-		ctx.beginPath();
-		ctx.fillStyle = this.color;
-		ctx.arc(this.position,YLOCK,this.radius,0,2*Math.PI);
-		ctx.fill();
-		ctx.restore();
+	this.render = function() {
+		context.save();
+		context.beginPath();
+		context.fillStyle = this.color;
+		context.arc(this.position,YLOCK,this.radius,0,2*Math.PI);
+		context.fill();
+		context.restore();
 	}
+}
+
+// Stick this into a global function so that setInterval works! :D
+updateAll = function() {
+	ball.update();
+}
+
+// Stick this into a global function so that setInterval works! :D
+renderAll = function() {
+	context.clearRect(0,0,CWIDTH,CHEIGHT); // clear your canvas before re-drawing
+	ball.render();
 }
