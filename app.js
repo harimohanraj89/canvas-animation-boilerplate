@@ -1,17 +1,17 @@
 var canvas, context, ball;
 
-var CWIDTH 			= 640;
-var CHEIGHT 		= 320;
-var YLOCK 			= CHEIGHT/2;
-var UPDATE_TIMESTEP	= 10;
-var RENDER_TIMESTEP	= 50;
+var CWIDTH = 640;
+var CHEIGHT = 320;
+var YLOCK = CHEIGHT/2;
+var UPDATE_TIMESTEP = 10;
+var RENDER_TIMESTEP = 50;
 
 window.onload = function() {
 
-	canvas 			= document.getElementById("anim-canvas");
-	canvas.width 	= CWIDTH;
-	canvas.height 	= CHEIGHT;
-	context 		= canvas.getContext('2d')
+	canvas = document.getElementById("anim-canvas");
+	canvas.width = CWIDTH;
+	canvas.height = CHEIGHT;
+	context = canvas.getContext('2d')
 
 	// Create an instance of Ball
 	// -------------
