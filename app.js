@@ -3,8 +3,8 @@ var canvas, context, ball;
 var CWIDTH 			= 640;
 var CHEIGHT 		= 320;
 var YLOCK 			= CHEIGHT/2;
-var UPDATE_TIMESTEP	= 20;
-var RENDER_TIMESTEP	= 20;
+var UPDATE_TIMESTEP	= 10;
+var RENDER_TIMESTEP	= 50;
 
 window.onload = function() {
 
@@ -17,7 +17,7 @@ window.onload = function() {
 	// -------------
 	ball = new Ball();
 
-	
+
 	// Draw the ball once onto the canvas
 	// -------------
 	ball.render(context);
@@ -34,10 +34,10 @@ window.onload = function() {
 }
 
 Ball = function() {
-	
+
 	// Attributes of our Ball class
 	// -------------
-	
+
 
 
 
@@ -61,26 +61,3 @@ Ball = function() {
 		ctx.restore();
 	}
 }
-
-
-
-
-
-
-
-
-// ========================================================================
-// 
-// 								IGNORE THIS STUFF
-// 
-// ========================================================================
-// Browser compatibility polyfill
-// ------------------------------
-// window.requestAnimFrame = (function(){
-//   return  window.requestAnimationFrame       ||
-//           window.webkitRequestAnimationFrame ||
-//           window.mozRequestAnimationFrame    ||
-//           function( callback ){
-//             window.setTimeout(callback, 1000 / 60);
-//           };
-// })();
